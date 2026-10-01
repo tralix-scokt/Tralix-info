@@ -19,7 +19,7 @@ It contains Tralix Scott's real details; edit the values to update the site.
 
 | To change…            | Do this |
 |-----------------------|---------|
-| Profile photo         | Replace `src/assets/profile.jpg` (square, ≥ 800×800). It's auto-resized and converted to WebP. (Currently a "TS" monogram.) |
+| Profile photo         | Replace `src/assets/profile.jpg` (square, ≥ 800×800). It's auto-resized and converted to WebP. |
 | Social share image    | Replace `public/og-image.jpg` (1200×630) |
 | Favicon               | Edit `public/favicon.svg` |
 | Add a social platform | Add a line to `socials` in `site.ts`. Icons: youtube, tiktok, github, instagram, facebook, x, telegram, whatsapp. Other values show a generic link icon. |

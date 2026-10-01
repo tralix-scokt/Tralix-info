@@ -33,8 +33,8 @@ export const profile = {
   shortBio:
     'I design and build modern, responsive websites for businesses and individuals, helping them establish a strong online presence and grow digitally.',
   photo: profilePhoto,
-  // Describe your photo for screen readers. (Currently a "TS" monogram until you add your photo.)
-  photoAlt: 'Tralix Scott',
+  // Describe your photo for screen readers.
+  photoAlt: 'Tralix Scott taking a mirror selfie while holding a phone',
 };
 
 /* ---------- Contact methods ---------- */
