@@ -1,10 +1,7 @@
 /**
  * ============================================================
- *  SITE CONFIG — the one file you edit to personalise the site
+ *  SITE CONFIG — the one file you edit to update the website
  * ============================================================
- *  Everything marked "PLACEHOLDER" is sample text. Replace it with
- *  your real details. No other file needs to change for normal edits.
- *
  *  Profile photo: replace  src/assets/profile.jpg  with your photo
  *  (square, at least 800×800 px). It is optimised automatically.
  *  Social-share image: replace  public/og-image.jpg  (1200×630 px).
@@ -13,84 +10,105 @@ import profilePhoto from '../assets/profile.jpg';
 
 /* ---------- Site / SEO ---------- */
 export const site = {
-  // PLACEHOLDER: your live website address (no trailing slash). Used for share previews.
-  url: 'https://your-domain.example',
+  // Your live website address with no trailing slash, e.g. 'https://tralixscott.com'.
+  // Leave empty until you have a domain; once set, canonical + share-preview image tags are added.
+  url: '',
   lang: 'en',
-  // Page title + meta description. Leave `title` empty to auto-build it from your name + title.
-  title: '',
+  title: 'Tralix Scott | Web Designer & Developer',
   description:
-    'Personal portfolio and contact page. Get in touch by phone, WhatsApp, email, YouTube or TikTok.', // PLACEHOLDER
+    'Tralix Scott is a web designer and developer, and the founder and CEO of Tralix AI. Modern, responsive websites for businesses and individuals. Contact by WhatsApp or email.',
   ogImage: '/og-image.jpg',
   themeColor: '#0b0d1a',
 };
 
 /* ---------- You ---------- */
 export const profile = {
-  name: 'Your Name', // PLACEHOLDER
-  title: 'Your Professional Title', // PLACEHOLDER
+  name: 'Tralix Scott',
+  title: 'Web Designer & Developer',
+  company: 'Tralix AI',
+  // Roles shown on the site
+  roles: ['Web Designer', 'Web Developer', 'Founder of Tralix AI', 'CEO of Tralix AI'],
+  // Short badge shown in the hero
+  badge: 'Founder & CEO of Tralix AI',
   shortBio:
-    'A short introduction about who you are and how you can help. Replace this sentence with one or two lines in your own words.', // PLACEHOLDER
+    'I design and build modern, responsive websites for businesses and individuals, helping them establish a strong online presence and grow digitally.',
   photo: profilePhoto,
-  photoAlt: 'Portrait of Your Name', // PLACEHOLDER: describe your photo
+  // Describe your photo for screen readers. (Currently a "TS" monogram until you add your photo.)
+  photoAlt: 'Tralix Scott',
 };
 
 /* ---------- Contact methods ---------- */
 export const contact = {
-  phone: {
-    display: '+000 000 000 0000', // PLACEHOLDER: how the number is shown
-    number: '+0000000000000', // PLACEHOLDER: international format, "+" then digits only
-  },
+  // Optional: leave `number` empty to hide the "Call Me" button everywhere.
+  // Format: international, "+" then digits only, e.g. '+2348012345678'
+  phone: { display: '', number: '' },
   whatsapp: {
-    number: '0000000000000', // PLACEHOLDER: international format, digits only, no "+"
-    message: 'Hello! I found you through your website.', // pre-filled first message (optional, can be '')
+    display: '+234 815 895 5478',
+    number: '2348158955478', // international format, digits only, no "+"
+    message: 'Hello Tralix, I found you through your website.', // pre-filled first message (can be '')
   },
   email: {
-    address: 'hello@example.com', // PLACEHOLDER
-    subject: 'Website enquiry', // pre-filled subject (optional)
+    address: 'tralixscokt@gmail.com',
+    subject: 'Website enquiry', // pre-filled subject (can be '')
   },
 };
 
 /* ---------- Social links ----------
- * To add a platform: copy a line, set label + url, and choose an icon:
+ * To add a platform: copy a line, set label + handle + url, and choose an icon:
  * youtube, tiktok, github, instagram, facebook, x, telegram, whatsapp
- * (any other value shows a generic link icon).
- * Remove a line to hide that platform everywhere.
+ * (any other value shows a generic link icon). Remove a line to hide it everywhere.
  */
 export const socials = [
-  { label: 'YouTube', icon: 'youtube', url: 'https://www.youtube.com/' }, // PLACEHOLDER: your channel URL
-  { label: 'TikTok', icon: 'tiktok', url: 'https://www.tiktok.com/' }, // PLACEHOLDER: your profile URL
-  { label: 'GitHub', icon: 'github', url: 'https://github.com/' }, // PLACEHOLDER: your profile URL
-  // { label: 'Instagram', icon: 'instagram', url: 'https://www.instagram.com/yourhandle' },
-  // { label: 'X', icon: 'x', url: 'https://x.com/yourhandle' },
+  { label: 'GitHub', icon: 'github', handle: 'tralix-scokt', blurb: 'Code and projects', url: 'https://github.com/tralix-scokt' },
+  { label: 'TikTok', icon: 'tiktok', handle: '@ladyofdeath999', blurb: 'Short videos', url: 'https://www.tiktok.com/@ladyofdeath999' },
+  { label: 'YouTube', icon: 'youtube', handle: '@tralix_scoktshorts', blurb: 'Videos and shorts', url: 'https://youtube.com/@tralix_scoktshorts' },
 ];
+
+/* ---------- Hero buttons ---------- */
+export const heroButtons = {
+  primary: { label: 'Contact Me', href: '#contact' },
+  // "View My Work" opens your GitHub profile. Change href to '#services' or a portfolio page if you prefer.
+  secondary: { label: 'View My Work', href: 'https://github.com/tralix-scokt', external: true },
+};
 
 /* ---------- About ---------- */
 export const about = {
-  heading: 'A bit about me',
-  // Each string is one paragraph. PLACEHOLDER text.
+  heading: 'Building a strong online presence',
+  // Each string is one paragraph.
   bio: [
-    'This is where your story goes. Share who you are, where you come from and what drives your work.',
-    'Add a second paragraph about your experience, what you care about, or what people can expect when they work with you.',
+    'I’m Tralix Scott, a web designer and developer focused on creating modern, responsive websites for businesses and individuals.',
+    'I build professional websites that help businesses establish a strong online presence, connect with customers, and grow digitally.',
+    'I also provide digital services including social media solutions, VPN services, and phone number solutions.',
   ],
-  // PLACEHOLDER lists: replace with your real skills and interests.
-  skills: ['Skill one', 'Skill two', 'Skill three', 'Skill four', 'Skill five', 'Skill six'],
-  interests: ['Interest one', 'Interest two', 'Interest three', 'Interest four'],
-  whatIDo:
-    'A short summary of what you do and who you do it for. Replace this with a sentence or two in your own words.',
+  companyNote: {
+    title: 'Founder & CEO of Tralix AI',
+    text: 'I’m the founder and CEO of Tralix AI.',
+  },
+  rolesHeading: 'My roles',
 };
 
 /* ---------- What I Do (cards) ----------
- * icons available: code, video, layout, star, zap, edit, globe, phone, mail
+ * icons available: code, layout, briefcase, smartphone, pen-tool, share, shield, phone, mail, globe, video, star, zap, edit
  */
 export const services = {
   heading: 'What I do',
-  intro: 'A quick look at the main things I can help you with.',
+  intro: 'Web design and development, plus a few digital services to help you get online and stay connected.',
   items: [
-    { title: 'Service or skill 1', icon: 'code', description: 'Describe this service or skill in one or two sentences.' },
-    { title: 'Service or skill 2', icon: 'video', description: 'Describe this service or skill in one or two sentences.' },
-    { title: 'Service or skill 3', icon: 'layout', description: 'Describe this service or skill in one or two sentences.' },
-    { title: 'Service or skill 4', icon: 'zap', description: 'Describe this service or skill in one or two sentences.' },
+    { title: 'Website Design', icon: 'layout', description: 'Clean, modern website designs that look professional and reflect your brand.' },
+    { title: 'Web Development', icon: 'code', description: 'Fast, reliable websites built with clean, well-organised code.' },
+    { title: 'Business Websites', icon: 'briefcase', description: 'Professional websites that help your business get online and connect with customers.' },
+    { title: 'Responsive Websites', icon: 'smartphone', description: 'Sites that look and work great on phones, tablets and desktop computers.' },
+    { title: 'UI/UX Design', icon: 'pen-tool', description: 'User-friendly interfaces and layouts that are easy and pleasant to use.' },
+    { title: 'Social Media Solutions', icon: 'share', description: 'Digital solutions to help you grow your presence on social media.' },
+    { title: 'VPN Services', icon: 'shield', description: 'VPN services for private and secure internet access.' },
+    { title: 'Phone Number Solutions', icon: 'phone', description: 'Phone number solutions to keep you connected. Message me for details.' },
   ],
+};
+
+/* ---------- Social section text ---------- */
+export const socialSection = {
+  heading: 'Find me online',
+  intro: 'Follow along or say hello on any of these platforms.',
 };
 
 /* ---------- Contact form ----------
@@ -108,20 +126,22 @@ export const form = {
   endpoint: '',
   accessKey: '', // only needed for Web3Forms
   successMessage: 'Thank you! Your message has been sent.',
-  errorMessage: 'Sorry, something went wrong. Please try again or use one of the contact buttons above.',
+  errorMessage: 'Sorry, something went wrong. Please try again, or use the WhatsApp or Email buttons.',
 };
 
 /* ---------- Navigation ---------- */
 export const nav = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
-  { label: 'What I Do', href: '#services' },
+  { label: 'Services', href: '#services' },
+  { label: 'Social', href: '#social' },
   { label: 'Contact', href: '#contact' },
 ];
 
 /* ---------- Helpers (don't edit) ---------- */
+export const hasPhone = Boolean(contact.phone.number);
 export const links = {
-  tel: `tel:${contact.phone.number.replace(/[^+\d]/g, '')}`,
+  tel: hasPhone ? `tel:${contact.phone.number.replace(/[^+\d]/g, '')}` : '',
   whatsapp: `https://wa.me/${contact.whatsapp.number.replace(/\D/g, '')}${
     contact.whatsapp.message ? `?text=${encodeURIComponent(contact.whatsapp.message)}` : ''
   }`,
@@ -129,5 +149,4 @@ export const links = {
     contact.email.subject ? `?subject=${encodeURIComponent(contact.email.subject)}` : ''
   }`,
 };
-export const pageTitle =
-  site.title || (profile.title ? `${profile.name} | ${profile.title}` : profile.name);
+export const pageTitle = site.title;

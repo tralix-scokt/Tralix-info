@@ -5,13 +5,13 @@ import Icon from './Icon.astro';
 <section id="services" class="section services" aria-labelledby="services-title">
   <div class="container">
     <div class="head">
-      <p class="eyebrow reveal">Services &amp; skills</p>
+      <p class="eyebrow reveal"><span>02</span> Services</p>
       <h2 id="services-title" class="section-title reveal" style="--d:60ms">{services.heading}</h2>
       <p class="section-intro reveal" style="--d:120ms">{services.intro}</p>
     </div>
     <ul class="cards">
       {services.items.map((item, i) => (
-        <li class="card reveal" style={`--d:${i * 70}ms`}>
+        <li class="card reveal" style={`--d:${(i % 4) * 70}ms`}>
           <span class="icon"><Icon name={item.icon} size={26} /></span>
           <h3>{item.title}</h3>
           <p>{item.description}</p>
@@ -39,4 +39,6 @@ import Icon from './Icon.astro';
   p { margin-top: 0.55rem; color: var(--muted); }
   @media (min-width: 640px) { .cards { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1020px) { .cards { grid-template-columns: repeat(4, 1fr); } }
+  .card:hover .icon { transform: scale(1.06) rotate(-4deg); }
+  .icon { transition: transform 0.3s var(--ease); }
 </style>

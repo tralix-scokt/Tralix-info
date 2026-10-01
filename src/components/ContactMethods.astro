@@ -1,11 +1,12 @@
 ---
-import { contact, links } from '../config/site';
+import { contact, links, hasPhone } from '../config/site';
 import Icon from './Icon.astro';
 
 const methods = [
-  { label: 'Call Me', value: contact.phone.display, href: links.tel, icon: 'phone', hint: 'Opens your phone dialer', external: false },
-  { label: 'WhatsApp', value: 'Chat on WhatsApp', href: links.whatsapp, icon: 'whatsapp', hint: 'Opens a WhatsApp chat', external: true },
-  { label: 'Email Me', value: contact.email.address, href: links.mailto, icon: 'mail', hint: 'Opens your email app', external: false },
+  // "Call Me" only appears if a phone number is set in src/config/site.ts
+  ...(hasPhone ? [{ label: 'Call Me', value: contact.phone.display || contact.phone.number, href: links.tel, icon: 'phone', external: false }] : []),
+  { label: 'WhatsApp', value: contact.whatsapp.display, href: links.whatsapp, icon: 'whatsapp', external: true },
+  { label: 'Email Me', value: contact.email.address, href: links.mailto, icon: 'mail', external: false },
 ];
 ---
 <ul class="methods">

@@ -1,5 +1,5 @@
 ---
-import { profile, contact, links, nav } from '../config/site';
+import { profile, contact, links, nav, hasPhone } from '../config/site';
 import SocialLinks from './SocialLinks.astro';
 const year = new Date().getFullYear();
 ---
@@ -7,7 +7,8 @@ const year = new Date().getFullYear();
   <div class="container top">
     <div class="about">
       <p class="name">{profile.name}</p>
-      <p class="desc">{profile.title}. {profile.shortBio}</p>
+      <p class="company">{profile.badge}</p>
+      <p class="desc">{profile.title}. Modern, responsive websites for businesses and individuals.</p>
       <SocialLinks variant="icons" label="Social media links" />
     </div>
 
@@ -21,15 +22,15 @@ const year = new Date().getFullYear();
     <div>
       <h2>Contact</h2>
       <ul>
-        <li><a href={links.tel}>{contact.phone.display}</a></li>
-        <li><a href={links.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+        {hasPhone && <li><a href={links.tel}>{contact.phone.display || contact.phone.number}</a></li>}
+        <li><a href={links.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp: {contact.whatsapp.display}<span class="visually-hidden"> (opens in a new tab)</span></a></li>
         <li><a href={links.mailto}>{contact.email.address}</a></li>
       </ul>
     </div>
   </div>
 
   <div class="container bottom">
-    <p>© {year} {profile.name}. All rights reserved.</p>
+    <p>© {year} {profile.name} · {profile.company}. All rights reserved.</p>
     <p>Built by {profile.name}</p>
   </div>
 </footer>
@@ -38,7 +39,8 @@ const year = new Date().getFullYear();
   .footer { background: #070913; border-top: 1px solid var(--border); padding-top: 3.5rem; }
   .top { display: grid; gap: 2.5rem; }
   .name { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.01em; }
-  .desc { color: var(--muted); margin: 0.5rem 0 1.2rem; max-width: 46ch; font-size: 1rem; }
+  .company { font-weight: 700; color: var(--blue); margin-top: 0.15rem; }
+  .desc { color: var(--muted); margin: 0.6rem 0 1.2rem; max-width: 46ch; font-size: 1rem; }
   h2 { font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.8rem; }
   li a { display: inline-block; padding: 0.3rem 0; color: var(--muted); text-decoration: none; overflow-wrap: anywhere; transition: color 0.2s; }
   li a:hover { color: var(--text); text-decoration: underline; text-underline-offset: 4px; }
@@ -46,5 +48,5 @@ const year = new Date().getFullYear();
     display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1.5rem;
     margin-top: 2.5rem; padding-block: 1.5rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.95rem;
   }
-  @media (min-width: 820px) { .top { grid-template-columns: 1.6fr 1fr 1fr; gap: 3rem; } }
+  @media (min-width: 820px) { .top { grid-template-columns: 1.6fr 1fr 1.2fr; gap: 3rem; } }
 </style>

@@ -1,8 +1,7 @@
 import { defineConfig } from 'astro/config';
 
-// Set `site` to your real domain (also update site.url in src/config/site.ts).
+// When you have a domain, add `site: 'https://yourdomain.com'` here and set site.url in src/config/site.ts.
 export default defineConfig({
-  site: 'https://your-domain.example',
   compressHTML: true,
   build: { inlineStylesheets: 'auto' },
   // Allows the Arena live preview host while developing; harmless in production (static output).

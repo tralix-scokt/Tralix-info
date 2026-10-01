@@ -15,19 +15,21 @@ npm run preview   # preview the production build
 
 Almost everything lives in **`src/config/site.ts`**: name, title, bio, phone, WhatsApp, email,
 social links, about text, skills, interests, service cards, and form settings.
-Every sample value is marked `PLACEHOLDER`.
+It contains Tralix Scott's real details; edit the values to update the site.
 
 | To change…            | Do this |
 |-----------------------|---------|
-| Profile photo         | Replace `src/assets/profile.jpg` (square, ≥ 800×800). It's auto-resized and converted to WebP. |
+| Profile photo         | Replace `src/assets/profile.jpg` (square, ≥ 800×800). It's auto-resized and converted to WebP. (Currently a "TS" monogram.) |
 | Social share image    | Replace `public/og-image.jpg` (1200×630) |
 | Favicon               | Edit `public/favicon.svg` |
 | Add a social platform | Add a line to `socials` in `site.ts`. Icons: youtube, tiktok, github, instagram, facebook, x, telegram, whatsapp. Other values show a generic link icon. |
-| Live domain           | Set `site.url` in `site.ts` **and** `site` in `astro.config.mjs` (needed for share previews/canonical URL) |
+| Live domain           | Set `site.url` in `site.ts` (e.g. `https://yourdomain.com`) and add `site` in `astro.config.mjs`. Until then, canonical and share-image tags are left out (they need an absolute URL). |
+| Call button           | Set `contact.phone.number` in `site.ts`; the "Call Me" button then appears automatically. |
+| "View My Work" link   | `heroButtons.secondary` in `site.ts` (currently your GitHub profile) |
 | Colours               | CSS variables at the top of `src/styles/global.css` |
 
 ### Phone, WhatsApp, email format
-- `phone.number`: international format, e.g. `+2348012345678`
+- `phone.number` (optional): international format, e.g. `+2348012345678`; leave empty to hide Call Me
 - `whatsapp.number`: digits only, no `+`, e.g. `2348012345678`
 - Buttons use `tel:`, `https://wa.me/…` and `mailto:` links, so they open the dialer, the right WhatsApp chat and the mail app.
 

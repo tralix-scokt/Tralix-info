@@ -58,6 +58,8 @@ a { color: inherit; }
   display: inline-block; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--blue); margin-bottom: 0.8rem;
 }
+.eyebrow span { color: var(--purple); margin-right: 0.45rem; }
+.eyebrow { font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; }
 .section-title { font-size: clamp(1.9rem, 4.5vw, 2.8rem); font-weight: 800; }
 .section-intro { color: var(--muted); max-width: 60ch; margin-top: 0.9rem; }
 .gradient-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }

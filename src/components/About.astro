@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { about, profile } from '../config/site';
+import Icon from './Icon.astro';
 ---
 <section id="about" class="section about" aria-labelledby="about-title">
   <div class="container grid">
@@ -19,30 +20,25 @@ import { about, profile } from '../config/site';
     </figure>
 
     <div class="content">
-      <p class="eyebrow reveal">About me</p>
+      <p class="eyebrow reveal"><span>01</span> About me</p>
       <h2 id="about-title" class="section-title reveal" style="--d:60ms">{about.heading}</h2>
       <div class="bio reveal" style="--d:120ms">
         {about.bio.map((p) => <p>{p}</p>)}
       </div>
 
       <div class="panel reveal" style="--d:160ms">
-        <h3>What I do</h3>
-        <p>{about.whatIDo}</p>
+        <span class="panel-icon"><Icon name="star" size={22} /></span>
+        <div>
+          <h3>{about.companyNote.title}</h3>
+          <p>{about.companyNote.text}</p>
+        </div>
       </div>
 
-      <div class="lists">
-        <div class="reveal" style="--d:200ms">
-          <h3>Skills</h3>
-          <ul class="chips">
-            {about.skills.map((s) => <li>{s}</li>)}
-          </ul>
-        </div>
-        <div class="reveal" style="--d:260ms">
-          <h3>Interests</h3>
-          <ul class="chips chips-alt">
-            {about.interests.map((s) => <li>{s}</li>)}
-          </ul>
-        </div>
+      <div class="roles reveal" style="--d:200ms">
+        <h3>{about.rolesHeading}</h3>
+        <ul class="chips">
+          {profile.roles.map((r) => <li>{r}</li>)}
+        </ul>
       </div>
     </div>
   </div>
@@ -58,25 +54,24 @@ import { about, profile } from '../config/site';
   }
   .bio { display: grid; gap: 1rem; margin-top: 1.25rem; color: var(--muted); }
   .panel {
-    margin-top: 1.75rem; padding: 1.25rem 1.4rem; border-radius: var(--radius);
-    background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--purple);
+    display: flex; gap: 1rem; align-items: center; margin-top: 1.75rem; padding: 1.2rem 1.4rem; border-radius: var(--radius);
+    background: linear-gradient(135deg, rgba(106,165,255,0.1), rgba(165,139,255,0.1)); border: 1px solid var(--border-strong);
   }
-  .panel p { color: var(--muted); margin-top: 0.4rem; }
+  .panel-icon { flex: none; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 13px; background: var(--grad); color: #0a0c18; }
+  .panel p { color: var(--muted); margin-top: 0.15rem; }
   h3 { font-size: 1.1rem; letter-spacing: -0.01em; }
-  .lists { display: grid; gap: 1.75rem; margin-top: 1.75rem; }
+  .roles { margin-top: 1.75rem; }
   .chips { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 0.8rem; }
   .chips li {
     padding: 0.4rem 0.95rem; border-radius: 999px; font-size: 0.95rem; font-weight: 600;
     background: rgba(106, 165, 255, 0.1); border: 1px solid rgba(106, 165, 255, 0.3); color: #d6e5ff;
     transition: transform 0.2s var(--ease), background-color 0.2s;
   }
-  .chips li:hover { transform: translateY(-2px); background: rgba(106, 165, 255, 0.18); }
-  .chips-alt li { background: rgba(165, 139, 255, 0.1); border-color: rgba(165, 139, 255, 0.32); color: #e4dcff; }
-  .chips-alt li:hover { background: rgba(165, 139, 255, 0.2); }
+  .chips li:nth-child(even) { background: rgba(165, 139, 255, 0.1); border-color: rgba(165, 139, 255, 0.32); color: #e4dcff; }
+  .chips li:hover { transform: translateY(-2px); background: rgba(106, 165, 255, 0.2); }
 
   @media (min-width: 900px) {
     .grid { grid-template-columns: 380px 1fr; gap: 4.5rem; }
     .portrait { width: 100%; position: sticky; top: calc(var(--header-h) + 2rem); }
-    .lists { grid-template-columns: 1fr 1fr; }
   }
 </style>
