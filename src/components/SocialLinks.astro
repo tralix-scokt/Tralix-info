@@ -1,0 +1,29 @@
+---
+import { socials } from '../config/site';
+import Icon from './Icon.astro';
+interface Props { variant?: 'buttons' | 'icons'; label?: string }
+const { variant = 'buttons', label = 'Social media' } = Astro.props;
+---
+<ul class:list={['socials', variant]} aria-label={label}>
+  {socials.map((s) => (
+    <li>
+      <a href={s.url} target="_blank" rel="noopener noreferrer" aria-label={variant === 'icons' ? `${s.label} (opens in a new tab)` : undefined}>
+        <Icon name={s.icon} size={variant === 'icons' ? 20 : 22} />
+        {variant === 'buttons' && <span>{s.label}<span class="visually-hidden"> (opens in a new tab)</span></span>}
+      </a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .socials { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+  a {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; text-decoration: none; color: var(--text);
+    border: 1px solid var(--border-strong); background: rgba(255,255,255,0.04);
+    transition: transform 0.25s var(--ease), border-color 0.2s, background-color 0.2s, color 0.2s;
+  }
+  a:hover { transform: translateY(-3px); border-color: var(--blue); background: rgba(106,165,255,0.12); }
+  .buttons a { min-height: 48px; padding: 0.6rem 1.25rem; border-radius: 999px; font-weight: 700; }
+  .icons a { width: 46px; height: 46px; border-radius: 50%; color: var(--muted); }
+  .icons a:hover { color: var(--text); }
+</style>

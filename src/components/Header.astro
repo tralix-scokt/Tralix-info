@@ -1,0 +1,77 @@
+---
+import Icon from './Icon.astro';
+import { nav, profile } from '../config/site';
+---
+<header class="site-header" data-header>
+  <div class="container bar">
+    <a class="brand" href="#home" aria-label={`${profile.name} — home`}>
+      <span class="brand-mark" aria-hidden="true">{profile.name.trim().charAt(0).toUpperCase()}</span>
+      <span class="brand-name">{profile.name}</span>
+    </a>
+
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-btn>
+      <span class="visually-hidden">Menu</span>
+      <Icon name="menu" class="i-open" />
+      <Icon name="close" class="i-close" />
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main" data-nav>
+      <ul>
+        {nav.map((item) => (
+          <li><a href={item.href} data-nav-link>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 50; height: var(--header-h);
+    background: rgba(10, 12, 24, 0.72);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent; transition: border-color 0.3s, background-color 0.3s;
+  }
+  .site-header.is-scrolled { border-bottom-color: var(--border); background: rgba(10, 12, 24, 0.88); }
+  .bar { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .brand { display: inline-flex; align-items: center; gap: 0.7rem; text-decoration: none; font-weight: 800; letter-spacing: -0.01em; min-height: 44px; }
+  .brand-mark {
+    display: grid; place-items: center; width: 36px; height: 36px; border-radius: 11px;
+    background: var(--grad); color: #0a0c18; font-weight: 900;
+  }
+  .brand-name { max-width: 52vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .menu-btn {
+    display: inline-grid; place-items: center; width: 48px; height: 48px; padding: 0; cursor: pointer;
+    color: var(--text); background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 14px;
+  }
+  .menu-btn :global(.i-close) { display: none; }
+  .menu-btn[aria-expanded='true'] :global(.i-open) { display: none; }
+  .menu-btn[aria-expanded='true'] :global(.i-close) { display: block; }
+
+  .site-nav {
+    position: absolute; inset: var(--header-h) 0 auto 0; padding: 0.75rem 1.25rem 1.25rem;
+    background: #0a0c18; border-bottom: 1px solid var(--border);
+    transform: translateY(-8px); opacity: 0; visibility: hidden;
+    transition: opacity 0.25s, transform 0.25s var(--ease), visibility 0s 0.25s;
+  }
+  .site-nav.is-open { opacity: 1; transform: none; visibility: visible; transition-delay: 0s; }
+  .site-nav ul { display: grid; gap: 0.25rem; }
+  .site-nav a {
+    display: flex; align-items: center; min-height: 48px; padding: 0 1rem; border-radius: 12px;
+    text-decoration: none; color: var(--muted); font-weight: 600;
+    transition: color 0.2s, background-color 0.2s;
+  }
+  .site-nav a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+  .site-nav a[aria-current='true'] { color: var(--text); background: rgba(122, 140, 255, 0.14); }
+
+  @media (min-width: 820px) {
+    .menu-btn { display: none; }
+    .site-nav {
+      position: static; padding: 0; background: none; border: 0;
+      transform: none; opacity: 1; visibility: visible;
+    }
+    .site-nav ul { display: flex; gap: 0.25rem; }
+    .site-nav a { min-height: 44px; padding: 0 1rem; border-radius: 999px; }
+  }
+</style>

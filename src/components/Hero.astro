@@ -1,0 +1,90 @@
+---
+import { Image } from 'astro:assets';
+import { profile, socials } from '../config/site';
+import Icon from './Icon.astro';
+---
+<section id="home" class="hero" aria-labelledby="hero-title">
+  <div class="glow glow-a" aria-hidden="true"></div>
+  <div class="glow glow-b" aria-hidden="true"></div>
+  <div class="container grid">
+    <div class="photo reveal">
+      <div class="ring">
+        <Image
+          src={profile.photo}
+          alt={profile.photoAlt}
+          widths={[240, 360, 480, 640]}
+          sizes="(min-width: 900px) 420px, 62vw"
+          format="webp"
+          quality={80}
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          class="photo-img"
+        />
+      </div>
+    </div>
+
+    <div class="copy">
+      <p class="eyebrow reveal">Hello, I’m</p>
+      <h1 id="hero-title" class="reveal" style="--d:60ms">
+        <span class="gradient-text">{profile.name}</span>
+      </h1>
+      <p class="role reveal" style="--d:120ms">{profile.title}</p>
+      <p class="bio reveal" style="--d:180ms">{profile.shortBio}</p>
+      <div class="actions reveal" style="--d:240ms">
+        <a class="btn btn-primary" href="#contact">Contact Me <Icon name="arrow-right" size={20} /></a>
+        <a class="btn btn-secondary" href="#about">About Me</a>
+      </div>
+      <ul class="mini-socials reveal" style="--d:300ms" aria-label="Social media">
+        {socials.map((s) => (
+          <li>
+            <a href={s.url} target="_blank" rel="noopener noreferrer" aria-label={`${s.label} (opens in a new tab)`}>
+              <Icon name={s.icon} size={20} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { position: relative; overflow: hidden; -webkit-mask-image: linear-gradient(#000 82%, transparent); mask-image: linear-gradient(#000 82%, transparent); padding-block: clamp(2.5rem, 7vw, 6rem) clamp(4rem, 9vw, 7rem); }
+  .glow { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.45; pointer-events: none; }
+  .glow-a { width: 420px; height: 420px; background: #3b5bdb; top: -140px; left: -140px; }
+  .glow-b { width: 380px; height: 380px; background: #7048e8; bottom: -120px; right: -100px; opacity: 0.35; }
+  .grid { position: relative; display: grid; gap: 2.25rem; align-items: center; justify-items: center; text-align: center; }
+
+  .photo { width: min(62vw, 280px); }
+  .ring {
+    padding: 5px; border-radius: 50%; background: var(--grad);
+    box-shadow: 0 0 0 8px rgba(122, 140, 255, 0.08), 0 30px 70px -20px rgba(100, 100, 255, 0.55);
+  }
+  .photo :global(.photo-img) { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 50%; background: var(--surface); }
+
+  h1 { font-size: clamp(2.5rem, 9vw, 4.5rem); font-weight: 850; letter-spacing: -0.03em; }
+  .role { margin-top: 0.6rem; font-size: clamp(1.15rem, 3vw, 1.5rem); font-weight: 600; color: var(--text); }
+  .bio { margin: 1.1rem auto 0; max-width: 54ch; color: var(--muted); font-size: 1.125rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.85rem; justify-content: center; margin-top: 2rem; }
+  .actions .btn { flex: 1 1 200px; max-width: 260px; }
+  .mini-socials { display: flex; gap: 0.6rem; justify-content: center; margin-top: 1.75rem; }
+  .mini-socials a {
+    display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%;
+    color: var(--muted); border: 1px solid var(--border); background: rgba(255,255,255,0.03);
+    transition: color 0.2s, transform 0.25s var(--ease), border-color 0.2s;
+  }
+  .mini-socials a:hover { color: var(--text); border-color: var(--blue); transform: translateY(-3px); }
+
+  @media (min-width: 900px) {
+    .grid { grid-template-columns: 1.15fr 0.85fr; text-align: left; justify-items: stretch; gap: 4rem; }
+    .photo { order: 2; width: min(100%, 420px); justify-self: center; }
+    .copy { order: 1; }
+    .bio { margin-inline: 0; }
+    .actions, .mini-socials { justify-content: flex-start; }
+    .actions .btn { flex: 0 0 auto; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .ring { animation: float 7s ease-in-out infinite; }
+    @keyframes float { 50% { transform: translateY(-8px); } }
+  }
+</style>

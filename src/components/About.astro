@@ -1,0 +1,82 @@
+---
+import { Image } from 'astro:assets';
+import { about, profile } from '../config/site';
+---
+<section id="about" class="section about" aria-labelledby="about-title">
+  <div class="container grid">
+    <figure class="portrait reveal">
+      <Image
+        src={profile.photo}
+        alt={profile.photoAlt}
+        widths={[320, 480, 640]}
+        sizes="(min-width: 900px) 380px, 80vw"
+        format="webp"
+        quality={78}
+        loading="lazy"
+        decoding="async"
+        class="portrait-img"
+      />
+    </figure>
+
+    <div class="content">
+      <p class="eyebrow reveal">About me</p>
+      <h2 id="about-title" class="section-title reveal" style="--d:60ms">{about.heading}</h2>
+      <div class="bio reveal" style="--d:120ms">
+        {about.bio.map((p) => <p>{p}</p>)}
+      </div>
+
+      <div class="panel reveal" style="--d:160ms">
+        <h3>What I do</h3>
+        <p>{about.whatIDo}</p>
+      </div>
+
+      <div class="lists">
+        <div class="reveal" style="--d:200ms">
+          <h3>Skills</h3>
+          <ul class="chips">
+            {about.skills.map((s) => <li>{s}</li>)}
+          </ul>
+        </div>
+        <div class="reveal" style="--d:260ms">
+          <h3>Interests</h3>
+          <ul class="chips chips-alt">
+            {about.interests.map((s) => <li>{s}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about { background: linear-gradient(180deg, var(--bg), var(--bg-soft)); }
+  .grid { display: grid; gap: 2.5rem; align-items: start; }
+  .portrait { margin: 0; width: min(80vw, 340px); justify-self: center; }
+  .portrait :global(.portrait-img) {
+    width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 28px; background: var(--surface);
+    border: 1px solid var(--border-strong); box-shadow: 0 30px 60px -30px rgba(90, 90, 255, 0.5);
+  }
+  .bio { display: grid; gap: 1rem; margin-top: 1.25rem; color: var(--muted); }
+  .panel {
+    margin-top: 1.75rem; padding: 1.25rem 1.4rem; border-radius: var(--radius);
+    background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--purple);
+  }
+  .panel p { color: var(--muted); margin-top: 0.4rem; }
+  h3 { font-size: 1.1rem; letter-spacing: -0.01em; }
+  .lists { display: grid; gap: 1.75rem; margin-top: 1.75rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 0.8rem; }
+  .chips li {
+    padding: 0.4rem 0.95rem; border-radius: 999px; font-size: 0.95rem; font-weight: 600;
+    background: rgba(106, 165, 255, 0.1); border: 1px solid rgba(106, 165, 255, 0.3); color: #d6e5ff;
+    transition: transform 0.2s var(--ease), background-color 0.2s;
+  }
+  .chips li:hover { transform: translateY(-2px); background: rgba(106, 165, 255, 0.18); }
+  .chips-alt li { background: rgba(165, 139, 255, 0.1); border-color: rgba(165, 139, 255, 0.32); color: #e4dcff; }
+  .chips-alt li:hover { background: rgba(165, 139, 255, 0.2); }
+
+  @media (min-width: 900px) {
+    .grid { grid-template-columns: 380px 1fr; gap: 4.5rem; }
+    .portrait { width: 100%; position: sticky; top: calc(var(--header-h) + 2rem); }
+    .lists { grid-template-columns: 1fr 1fr; }
+  }
+</style>

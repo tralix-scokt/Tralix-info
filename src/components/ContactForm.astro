@@ -1,0 +1,87 @@
+---
+import { form, contact } from '../config/site';
+import Icon from './Icon.astro';
+const connected = Boolean(form.endpoint);
+---
+<form
+  class="form reveal"
+  method="post"
+  novalidate
+  data-contact-form
+  data-endpoint={form.endpoint}
+  data-access-key={form.accessKey}
+  data-success={form.successMessage}
+  data-error={form.errorMessage}
+  data-fallback-email={contact.email.address}
+  aria-labelledby="form-title"
+>
+  <h3 id="form-title">Send me a message</h3>
+
+  {!connected && (
+    <p class="notice" role="note">
+      <strong>Heads-up:</strong> this form isn’t connected to an email service yet, so messages can’t be delivered from here.
+      Please use the Call, WhatsApp or Email buttons.
+    </p>
+  )}
+
+  <div class="field">
+    <label for="cf-name">Name</label>
+    <input id="cf-name" name="name" type="text" autocomplete="name" required maxlength="100" aria-describedby="cf-name-err" />
+    <p class="err" id="cf-name-err" data-err-for="name"></p>
+  </div>
+
+  <div class="field">
+    <label for="cf-email">Email</label>
+    <input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="150" aria-describedby="cf-email-err" />
+    <p class="err" id="cf-email-err" data-err-for="email"></p>
+  </div>
+
+  <div class="field">
+    <label for="cf-message">Message</label>
+    <textarea id="cf-message" name="message" rows="5" required maxlength="3000" aria-describedby="cf-message-err"></textarea>
+    <p class="err" id="cf-message-err" data-err-for="message"></p>
+  </div>
+
+  <!-- Spam honeypot: real people never see or fill this -->
+  <div class="hp" aria-hidden="true">
+    <label>Leave this field empty <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+  </div>
+
+  <button class="btn btn-primary submit" type="submit" data-submit>
+    <span data-submit-label>Send Message</span> <Icon name="send" size={20} />
+  </button>
+
+  <div class="status" role="status" aria-live="polite" data-status hidden></div>
+</form>
+
+<style>
+  .form {
+    display: grid; gap: 1.1rem; padding: clamp(1.25rem, 4vw, 2rem); border-radius: 22px;
+    background: linear-gradient(160deg, var(--surface-2), var(--surface)); border: 1px solid var(--border);
+  }
+  h3 { font-size: 1.35rem; }
+  .notice {
+    padding: 0.85rem 1rem; border-radius: var(--radius-sm); font-size: 0.95rem; color: #ffe9b0;
+    background: rgba(255, 209, 102, 0.08); border: 1px solid rgba(255, 209, 102, 0.35);
+  }
+  .field { display: grid; gap: 0.4rem; }
+  label { font-weight: 700; font-size: 0.95rem; }
+  input, textarea {
+    width: 100%; font: inherit; color: var(--text); padding: 0.85rem 1rem; min-height: 50px;
+    background: rgba(8, 10, 22, 0.7); border: 1px solid var(--border-strong); border-radius: var(--radius-sm);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  textarea { resize: vertical; min-height: 140px; }
+  input:hover, textarea:hover { border-color: rgba(160, 175, 255, 0.55); }
+  input:focus-visible, textarea:focus-visible { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(106, 165, 255, 0.4); }
+  input[aria-invalid='true'], textarea[aria-invalid='true'] { border-color: #ff8a9b; }
+  .err { color: #ffb3be; font-size: 0.9rem; min-height: 0; }
+  .err:empty { display: none; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .submit { width: 100%; margin-top: 0.25rem; }
+  .status { padding: 0.9rem 1rem; border-radius: var(--radius-sm); font-size: 0.97rem; border: 1px solid var(--border-strong); }
+  .status[data-type='success'] { background: rgba(80, 200, 140, 0.1); border-color: rgba(80, 200, 140, 0.5); color: #c6f6dc; }
+  .status[data-type='error'] { background: rgba(255, 110, 130, 0.1); border-color: rgba(255, 110, 130, 0.5); color: #ffd0d7; }
+  .status[data-type='info'] { background: rgba(106, 165, 255, 0.1); border-color: rgba(106, 165, 255, 0.45); color: #dbe8ff; }
+  .status :global(a) { color: var(--blue); font-weight: 700; }
+</style>

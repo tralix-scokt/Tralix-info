@@ -1,0 +1,42 @@
+---
+import { services } from '../config/site';
+import Icon from './Icon.astro';
+---
+<section id="services" class="section services" aria-labelledby="services-title">
+  <div class="container">
+    <div class="head">
+      <p class="eyebrow reveal">Services &amp; skills</p>
+      <h2 id="services-title" class="section-title reveal" style="--d:60ms">{services.heading}</h2>
+      <p class="section-intro reveal" style="--d:120ms">{services.intro}</p>
+    </div>
+    <ul class="cards">
+      {services.items.map((item, i) => (
+        <li class="card reveal" style={`--d:${i * 70}ms`}>
+          <span class="icon"><Icon name={item.icon} size={26} /></span>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .services { background: var(--bg-soft); }
+  .cards { display: grid; gap: 1.1rem; margin-top: 2.5rem; grid-template-columns: 1fr; }
+  .card {
+    position: relative; padding: 1.75rem; border-radius: var(--radius);
+    background: linear-gradient(160deg, var(--surface-2), var(--surface));
+    border: 1px solid var(--border);
+    transition: transform 0.35s var(--ease), border-color 0.3s, box-shadow 0.35s var(--ease), opacity 0.7s var(--ease);
+  }
+  .card:hover { transform: translateY(-6px); border-color: var(--border-strong); box-shadow: 0 24px 50px -28px rgba(110, 110, 255, 0.55); }
+  .icon {
+    display: grid; place-items: center; width: 52px; height: 52px; border-radius: 15px; margin-bottom: 1.1rem;
+    color: #0a0c18; background: var(--grad);
+  }
+  h3 { font-size: 1.2rem; }
+  p { margin-top: 0.55rem; color: var(--muted); }
+  @media (min-width: 640px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1020px) { .cards { grid-template-columns: repeat(4, 1fr); } }
+</style>

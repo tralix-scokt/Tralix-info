@@ -1,0 +1,33 @@
+---
+import ContactMethods from './ContactMethods.astro';
+import ContactForm from './ContactForm.astro';
+import SocialLinks from './SocialLinks.astro';
+---
+<section id="contact" class="section contact" aria-labelledby="contact-title">
+  <div class="container">
+    <div class="head">
+      <p class="eyebrow reveal">Contact</p>
+      <h2 id="contact-title" class="section-title reveal" style="--d:60ms">Let’s <span class="gradient-text">get in touch</span></h2>
+      <p class="section-intro reveal" style="--d:120ms">Pick whichever way suits you best. I’d love to hear from you.</p>
+    </div>
+
+    <div class="grid">
+      <div class="left">
+        <ContactMethods />
+        <div class="follow reveal">
+          <h3>Follow me</h3>
+          <SocialLinks />
+        </div>
+      </div>
+      <ContactForm />
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact { position: relative; background: radial-gradient(900px 400px at 85% 0%, rgba(112, 72, 232, 0.16), transparent 70%), var(--bg); }
+  .grid { display: grid; gap: 2rem; margin-top: 2.5rem; align-items: start; }
+  .left { display: grid; gap: 2rem; }
+  .follow h3 { font-size: 1.15rem; margin-bottom: 0.9rem; }
+  @media (min-width: 900px) { .grid { grid-template-columns: 1fr 1.1fr; gap: 3rem; } }
+</style>
