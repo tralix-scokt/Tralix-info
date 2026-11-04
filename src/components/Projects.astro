@@ -1,0 +1,47 @@
+---
+import { projects } from '../config/site';
+import Icon from './Icon.astro';
+---
+<section id="projects" class="section projects" aria-labelledby="projects-title">
+  <div class="container">
+    <p class="eyebrow reveal"><span>03</span> Projects</p>
+    <h2 id="projects-title" class="section-title reveal" style="--d:60ms">{projects.heading}</h2>
+    <p class="section-intro reveal" style="--d:120ms">{projects.intro}</p>
+    <ul class="cards">
+      {projects.items.map((project, i) => (
+        <li class="card reveal" style={`--d:${i * 70}ms`}>
+          <div class="card-top">
+            <span class="project-number" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <span class="status"><span aria-hidden="true"></span>Active</span>
+          </div>
+          <h3>{project.title}</h3>
+          {project.url && (
+            <a href={project.url} target="_blank" rel="noopener noreferrer">
+              Visit {project.title} <Icon name="arrow-up-right" size={18} />
+              <span class="visually-hidden"> (opens in a new tab)</span>
+            </a>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .projects { background: var(--bg); }
+  .cards { display: grid; grid-template-columns: 1fr; gap: 1.1rem; margin-top: 2.5rem; }
+  .card {
+    display: flex; flex-direction: column; align-items: flex-start; min-height: 190px;
+    padding: 1.75rem; border: 1px solid var(--border); border-radius: var(--radius);
+    background: linear-gradient(160deg, var(--surface-2), var(--surface));
+  }
+  .card-top { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+  .project-number { font-family: ui-monospace, monospace; font-size: 0.85rem; color: var(--purple); }
+  .status { display: inline-flex; align-items: center; gap: 0.45rem; color: #b8e8d1; font-size: 0.8rem; font-weight: 700; }
+  .status span { width: 7px; height: 7px; border-radius: 50%; background: #69d7a2; }
+  h3 { margin-top: 1.5rem; font-size: 1.3rem; }
+  a { display: inline-flex; align-items: center; gap: 0.3rem; margin-top: auto; padding-top: 1rem; color: var(--blue); font-weight: 700; text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  @media (min-width: 640px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1020px) { .cards { grid-template-columns: repeat(4, 1fr); } }
+</style>

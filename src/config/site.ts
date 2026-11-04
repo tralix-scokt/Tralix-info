@@ -67,8 +67,7 @@ export const socials = [
 /* ---------- Hero buttons ---------- */
 export const heroButtons = {
   primary: { label: 'Contact Me', href: '#contact' },
-  // "View My Work" opens your GitHub profile. Change href to '#services' or a portfolio page if you prefer.
-  secondary: { label: 'View My Work', href: 'https://github.com/tralix-scokt', external: true },
+  secondary: { label: 'View My Work', href: '#projects', external: false },
 };
 
 /* ---------- About ---------- */
@@ -105,6 +104,20 @@ export const services = {
   ],
 };
 
+/* ---------- Active projects ----------
+ * Only add a URL when you want a project link to be shown.
+ */
+export const projects = {
+  heading: 'Active projects',
+  intro: 'A selection of projects I’m currently working on.',
+  items: [
+    { title: 'Jarvis', url: '' },
+    { title: 'Students Ecosystem', url: 'https://students-ecosystem.vercel.app' },
+    { title: 'Tralix Messager', url: '' },
+    { title: 'Petpals', url: '' },
+  ],
+};
+
 /* ---------- Social section text ---------- */
 export const socialSection = {
   heading: 'Find me online',
@@ -134,6 +147,7 @@ export const nav = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
+  { label: 'Projects', href: '#projects' },
   { label: 'Social', href: '#social' },
   { label: 'Contact', href: '#contact' },
 ];
