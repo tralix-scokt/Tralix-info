@@ -1,5 +1,5 @@
 ---
-import { contact, links, hasPhone } from '../config/site';
+import { contact, links, hasPhone, instagram } from '../config/site';
 import Icon from './Icon.astro';
 
 const methods = [
@@ -7,6 +7,7 @@ const methods = [
   ...(hasPhone ? [{ label: 'Call Me', value: contact.phone.display || contact.phone.number, href: links.tel, icon: 'phone', external: false }] : []),
   { label: 'WhatsApp', value: contact.whatsapp.display, href: links.whatsapp, icon: 'whatsapp', external: true },
   { label: 'Email Me', value: contact.email.address, href: links.mailto, icon: 'mail', external: false },
+  { label: instagram.label, value: instagram.handle, href: instagram.url, icon: instagram.icon, external: true },
 ];
 ---
 <ul class="methods">
@@ -30,6 +31,7 @@ const methods = [
 
 <style>
   .methods { display: grid; gap: 0.85rem; }
+  @media (min-width: 900px) { .methods { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   .method {
     display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem; min-height: 76px;
     text-decoration: none; border-radius: var(--radius);
