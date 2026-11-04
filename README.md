@@ -14,7 +14,7 @@ npm run preview   # preview the production build
 ## Edit your content (one file)
 
 Almost everything lives in **`src/config/site.ts`**: name, title, bio, phone, WhatsApp, email,
-social links, about text, skills, interests, service cards, and form settings.
+social links, about text, service cards, active projects, and form settings.
 It contains Tralix Scott's real details; edit the values to update the site.
 
 | To change…            | Do this |
@@ -25,7 +25,8 @@ It contains Tralix Scott's real details; edit the values to update the site.
 | Add a social platform | Add a line to `socials` in `site.ts`. Icons: youtube, tiktok, github, instagram, facebook, x, telegram, whatsapp. Other values show a generic link icon. |
 | Live domain           | Set `site.url` in `site.ts` (e.g. `https://yourdomain.com`) and add `site` in `astro.config.mjs`. Until then, canonical and share-image tags are left out (they need an absolute URL). |
 | Call button           | Set `contact.phone.number` in `site.ts`; the "Call Me" button then appears automatically. |
-| "View My Work" link   | `heroButtons.secondary` in `site.ts` (currently your GitHub profile) |
+| Active projects       | Edit `projects.items` in `site.ts`. Leave a project’s `url` empty to show it without a link. |
+| "View My Work" link   | `heroButtons.secondary` in `site.ts` (currently the projects section) |
 | Colours               | CSS variables at the top of `src/styles/global.css` |
 
 ### Phone, WhatsApp, email format
