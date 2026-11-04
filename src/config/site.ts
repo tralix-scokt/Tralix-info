@@ -58,7 +58,10 @@ export const contact = {
  * youtube, tiktok, github, instagram, facebook, x, telegram, whatsapp
  * (any other value shows a generic link icon). Remove a line to hide it everywhere.
  */
+export const instagram = { label: 'Instagram', icon: 'instagram', handle: '@tralixscokt', blurb: 'Connect with me', url: 'https://www.instagram.com/tralixscokt/' };
+
 export const socials = [
+  instagram,
   { label: 'GitHub', icon: 'github', handle: 'tralix-scokt', blurb: 'Code and projects', url: 'https://github.com/tralix-scokt' },
   { label: 'TikTok', icon: 'tiktok', handle: '@ladyofdeath999', blurb: 'Short videos', url: 'https://www.tiktok.com/@ladyofdeath999' },
   { label: 'YouTube', icon: 'youtube', handle: '@tralix_scoktshorts', blurb: 'Videos and shorts', url: 'https://youtube.com/@tralix_scoktshorts' },
@@ -122,24 +125,6 @@ export const projects = {
 export const socialSection = {
   heading: 'Find me online',
   intro: 'Follow along or say hello on any of these platforms.',
-};
-
-/* ---------- Contact form ----------
- * The form is wired and validated, but NO messages are delivered until you
- * add a real endpoint. See README.md → "Connect the contact form".
- *
- *   endpoint: 'https://formspree.io/f/xxxxxxx'   (Formspree)
- *   endpoint: 'https://api.web3forms.com/submit'  (Web3Forms; also set accessKey)
- *   endpoint: '/api/contact'                      (your own backend / serverless function)
- *
- * While `endpoint` is empty, the form says so honestly and offers an
- * "Open in email app" fallback instead of pretending to send.
- */
-export const form = {
-  endpoint: '',
-  accessKey: '', // only needed for Web3Forms
-  successMessage: 'Thank you! Your message has been sent.',
-  errorMessage: 'Sorry, something went wrong. Please try again, or use the WhatsApp or Email buttons.',
 };
 
 /* ---------- Navigation ---------- */

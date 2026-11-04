@@ -14,7 +14,7 @@ npm run preview   # preview the production build
 ## Edit your content (one file)
 
 Almost everything lives in **`src/config/site.ts`**: name, title, bio, phone, WhatsApp, email,
-social links, about text, service cards, active projects, and form settings.
+social links, about text, service cards, and active projects.
 It contains Tralix Scott's real details; edit the values to update the site.
 
 | To change…            | Do this |
@@ -34,19 +34,6 @@ It contains Tralix Scott's real details; edit the values to update the site.
 - `whatsapp.number`: digits only, no `+`, e.g. `2348012345678`
 - Buttons use `tel:`, `https://wa.me/…` and `mailto:` links, so they open the dialer, the right WhatsApp chat and the mail app.
 
-## Connect the contact form
-
-The form validates input but **does not send anything until you set `form.endpoint`** in `site.ts`
-(until then it says so and offers an "Open in email app" fallback; nothing is faked).
-
-Options:
-1. **Formspree**: create a form, set `endpoint: 'https://formspree.io/f/xxxx'`.
-2. **Web3Forms**: `endpoint: 'https://api.web3forms.com/submit'` and `accessKey: '<your key>'`.
-3. **Your own backend / serverless function**: `endpoint: '/api/contact'`; it receives JSON `{ name, email, message }`.
-   Return a 2xx status on success. Customise the request in `sendToBackend()` in `src/scripts/contact-form.ts`.
-
-Once an endpoint is set, the "not connected" notice disappears automatically.
-
 ## Project structure
 
 ```
@@ -54,10 +41,10 @@ src/
   config/site.ts        ← all your content & settings
   config/icons.ts       ← icon paths
   components/           ← Header, Hero, About, Services, Contact, ContactMethods,
-                          ContactForm, SocialLinks, Footer, Icon
+                          Projects, SocialLinks, Footer, Icon
   layouts/BaseLayout.astro   ← <head>, SEO + Open Graph meta
   pages/index.astro     ← page assembly
-  scripts/              ← nav.ts, reveal.ts, contact-form.ts
+  scripts/              ← nav.ts, reveal.ts
   styles/global.css     ← design tokens + shared styles
   assets/profile.jpg    ← optimised at build time
 public/                 ← favicon, og-image, robots.txt
@@ -68,5 +55,4 @@ It builds to plain static files (`dist/`). Works on Netlify, Vercel, Cloudflare 
 (build command `npm run build`, output directory `dist`).
 
 ## Accessibility notes
-Skip link, semantic landmarks, visible focus rings, labelled form fields with inline errors,
-`aria-live` form status, ≥ 48px touch targets, high-contrast text, and `prefers-reduced-motion` support.
+Skip link, semantic landmarks, visible focus rings, ≥ 48px touch targets, high-contrast text, and `prefers-reduced-motion` support.
